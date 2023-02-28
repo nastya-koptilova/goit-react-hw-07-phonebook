@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { searchContact } from 'redux/filterSlice';
+import { selectSearch } from 'redux/selectors';
 import { Title, Input } from './Filter.Styled';
 
 export function Filter() {
   const dispatch = useDispatch();
-  const search = useSelector(state => state.filterData.search);
+  const search = useSelector(selectSearch);
 
   const onSearch = event => {
     const value = event.target.value;

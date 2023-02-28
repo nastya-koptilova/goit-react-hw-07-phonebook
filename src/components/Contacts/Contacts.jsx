@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact, fetchContacts } from 'redux/operations';
+import { selectFilterContacts } from 'redux/selectors';
 import { Item, Title, Button, Span } from './Contacts.Styled';
 
 export function Contacts() {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contactsData.contacts);
-  const search = useSelector(state => state.filterData.search);
+  const filterContact = useSelector(selectFilterContacts);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -15,10 +15,6 @@ export function Contacts() {
   const onDelete = id => {
     dispatch(deleteContact(id));
   };
-
-  const filterContact = contacts.filter(el =>
-    el.name.toLowerCase().includes(search.toLowerCase().trim())
-  );
 
   return (
     <ul>

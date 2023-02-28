@@ -12,7 +12,7 @@ const contactsSlice = createSlice({
   initialState: initialState,
   extraReducers: builder => {
     builder
-        // ----- getContacts -----
+      // ----- getContacts -----
       .addCase(fetchContacts.pending, state => {
         state.isLoading = true;
         state.error = null;
@@ -45,7 +45,9 @@ const contactsSlice = createSlice({
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.contacts = state.contacts.filter(el => el.id !== action.payload.id);
+        state.contacts = state.contacts.filter(
+          el => el.id !== action.payload.id
+        );
       })
       .addCase(deleteContact.rejected, (state, action) => {
         state.isLoading = false;
